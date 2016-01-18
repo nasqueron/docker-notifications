@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+pushd /var/wwwroot/default
+
+if [ -z "$NO_INSTALL" ]; then
+	php artisan key:generate
+	php artisan config:cache
+	chown app:app /var/wwwroot/default
+fi
+
+# We're done
+popd
+touch .initialized
