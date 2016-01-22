@@ -2,8 +2,32 @@
 
 pushd /var/wwwroot/default
 
+# Generates a unique application key in .env
+function generate_key {
+	KEY=`php artisan key:generate --show`
+	echo "" >> .env
+	echo "APP_KEY=$KEY" >> .env
+}
+
+# Determines if APP_KEY is missing
+function is_app_key_missing {
+	if [ -v APP_KEY ]; then
+		return 0
+	fi
+
+	if  [ ! -f .env ]; then
+		return 1
+	fi
+
+	grep -q 'APP_KEY=' .env
+	return $?
+}
+
 if [ -z "$NO_INSTALL" ]; then
-	php artisan key:generate
+	is_app_key_missing
+	if [ $? -eq 1 ]; then
+		generate_key
+	fi
 	php artisan config:cache
 	chown app:app /var/wwwroot/default
 fi
