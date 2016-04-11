@@ -5,7 +5,9 @@ pushd /var/wwwroot/default
 # Generates a unique application key in .env
 function generate_key {
 	KEY=`php artisan key:generate --show`
-	echo "" >> .env
+	if  [ -f .env ]; then
+		echo "" >> .env
+	fi
 	echo "APP_KEY=$KEY" >> .env
 }
 
