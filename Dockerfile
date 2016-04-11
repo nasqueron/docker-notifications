@@ -23,4 +23,3 @@ RUN git init && git remote add origin https://github.com/nasqueron/notifications
 #
 
 CMD ["/usr/local/sbin/init-container"]
-
