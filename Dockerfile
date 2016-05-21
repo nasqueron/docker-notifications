@@ -1,5 +1,5 @@
 #
-# Nasqueron - Cachet image
+# Nasqueron - Notifications image
 #
 
 FROM nasqueron/nginx-php-fpm:novolume
