@@ -2,7 +2,7 @@
 # Nasqueron - Notifications image
 #
 
-FROM nasqueron/nginx-php7-fpm:novolume
+FROM nasqueron/nginx-php-fpm:novolume
 MAINTAINER Nasqueron Organisation <docker@nasqueron.org>
 
 #
